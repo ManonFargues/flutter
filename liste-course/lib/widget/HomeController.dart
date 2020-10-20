@@ -20,6 +20,8 @@ class _HomeControllerState extends State<HomeController> {
     Produit(nom: 'Lait', prix: '5'),
   ];
 
+  bool checkBoxValue = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,13 +38,18 @@ class _HomeControllerState extends State<HomeController> {
           itemBuilder: (context, index) {
             return Padding(
               padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
-              child: Card(
-                elevation: 0,
-                color: Colors.blueGrey,
-                child: ListTile(
-                  title: Text(produit[index].nom,
-                  ),
-                ),
+              child: Row(
+                  children: <Widget>[
+                    Checkbox(
+                      value: checkBoxValue,
+                      onChanged: (bool value){
+                        setState(() {
+                          checkBoxValue = value;
+                        });
+                      },
+                    ),
+                    Text(produit[index].nom)
+                  ]
               ),
             );
           }),
